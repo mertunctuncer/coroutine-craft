@@ -18,9 +18,14 @@ allprojects {
 
     repositories {
         mavenCentral()
+        // Paper
+        maven("https://repo.papermc.io/repository/maven-public/")
     }
 
     dependencies {
+        // Folia
+        compileOnly("dev.folia:folia-api:1.20.1-R0.1-SNAPSHOT")
+
         // Kotlin
         compileOnly("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
         compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
@@ -33,7 +38,6 @@ allprojects {
         test {
             useJUnitPlatform()
 
-            // Show test results.
             testLogging {
                 events("passed", "skipped", "failed")
             }
