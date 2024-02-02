@@ -16,9 +16,13 @@ import org.bukkit.entity.Entity
 import kotlin.coroutines.coroutineContext
 
 
-
-
-
+/**
+ * Launches the task using the global scheduler
+ *
+ * @param delay delay in ticks
+ * @param task task to execute
+ */
+@Suppress("unused")
 suspend fun launchLater(delay: Ticks, task: () -> Unit) = with(coroutineContext.getPlugin()) {
     scope.launch { later(delay, task) }
 }
