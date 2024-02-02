@@ -1,5 +1,6 @@
-package dev.peopo.foliascope.api
+package dev.peopo.foliascope.api.plugin
 
+import dev.peopo.foliascope.api.Session
 import dev.peopo.foliascope.core.SessionImpl
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.runBlocking

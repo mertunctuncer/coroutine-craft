@@ -1,6 +1,7 @@
 package dev.peopo.foliascope.api
 
 import dev.peopo.foliascope.api.context.getPlugin
+import dev.peopo.foliascope.api.plugin.*
 
 import kotlinx.coroutines.launch
 import org.bukkit.Chunk

@@ -1,4 +1,6 @@
-package dev.peopo.foliascope.api
+package dev.peopo.foliascope.api.plugin
+
+import dev.peopo.foliascope.api.Session
 
 
 interface KotlinPlugin{

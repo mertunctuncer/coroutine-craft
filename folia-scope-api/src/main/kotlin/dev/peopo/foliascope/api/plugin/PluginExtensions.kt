@@ -1,4 +1,4 @@
-package dev.peopo.foliascope.api
+package dev.peopo.foliascope.api.plugin
 
 import kotlinx.coroutines.CoroutineScope
 import org.bukkit.Chunk
