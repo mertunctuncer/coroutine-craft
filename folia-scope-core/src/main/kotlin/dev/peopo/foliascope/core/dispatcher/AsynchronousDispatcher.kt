@@ -1,15 +1,16 @@
-package dev.peopo.foliascope.api.dispatcher
+package dev.peopo.foliascope.core.dispatcher
 
+import dev.peopo.foliascope.api.context.getPlugin
 import kotlinx.coroutines.Runnable
 import kotlin.coroutines.CoroutineContext
 
-class GlobalDispatcher: FoliaDispatcher() {
+class AsynchronousDispatcher: FoliaDispatcher() {
 
     override fun dispatch(context: CoroutineContext, block: Runnable) {
-        val plugin = getPlugin() ?: throw IllegalStateException("GlobalDispatcher can only be used within a plugin context")
+        val plugin = context.getPlugin()
 
         if(!plugin.isEnabled) throw IllegalStateException("${plugin.name} has tried to dispatch a task while it is disabled")
 
-        plugin.server.globalRegionScheduler.execute(plugin, block)
+        plugin.server.asyncScheduler.runNow(plugin) { block.run() }
     }
 }

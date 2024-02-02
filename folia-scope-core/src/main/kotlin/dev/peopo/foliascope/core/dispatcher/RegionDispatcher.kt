@@ -1,5 +1,6 @@
-package dev.peopo.foliascope.api.dispatcher
+package dev.peopo.foliascope.core.dispatcher
 
+import dev.peopo.foliascope.api.context.getPlugin
 import kotlinx.coroutines.Runnable
 import org.bukkit.World
 import kotlin.coroutines.CoroutineContext
@@ -11,7 +12,7 @@ class RegionDispatcher(
 ) : FoliaDispatcher() {
 
     override fun dispatch(context: CoroutineContext, block: Runnable) {
-        val plugin = getPlugin() ?: throw IllegalStateException("RegionDispatcher can only be used within a plugin context")
+        val plugin = context.getPlugin()
 
         if(!plugin.isEnabled) throw IllegalStateException("${plugin.name} has tried to dispatch a task while it is disabled")
 
