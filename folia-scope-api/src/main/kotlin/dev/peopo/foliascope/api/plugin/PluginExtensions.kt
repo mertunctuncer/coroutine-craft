@@ -10,23 +10,23 @@ import kotlin.coroutines.CoroutineContext
 
 
 val Plugin.scope: CoroutineScope
-    get() = this.toKotlinPlugin().session.scope
+    get() = this.toKotlinPlugin().coroutineScope
 val Plugin.globalDispatcher: CoroutineContext
-    get() = this.toKotlinPlugin().session.globalDispatcher
+    get() = this.toKotlinPlugin().dispatcherProvider.globalDispatcher
 val Plugin.asyncDispatcher: CoroutineContext
-    get() = this.toKotlinPlugin().session.asyncDispatcher
+    get() = this.toKotlinPlugin().dispatcherProvider.asyncDispatcher
 fun Plugin.entityDispatcher(entity: Entity) : CoroutineContext {
-    return this.toKotlinPlugin().session.entityDispatcher(entity)
+    return this.toKotlinPlugin().dispatcherProvider.entityDispatcher(entity)
 }
 fun Plugin.regionDispatcher(location: Location) : CoroutineContext {
     with(location.chunk) {
-        return this@regionDispatcher.toKotlinPlugin().session.regionDispatcher(x, z, world)
+        return this@regionDispatcher.toKotlinPlugin().dispatcherProvider.regionDispatcher(x, z, world)
     }
 }
 fun Plugin.regionDispatcher(chunkX: Int, chunkZ: Int, world: World) : CoroutineContext {
-    return this.toKotlinPlugin().session.regionDispatcher(chunkX, chunkZ, world)
+    return this.toKotlinPlugin().dispatcherProvider.regionDispatcher(chunkX, chunkZ, world)
 }
 fun Plugin.regionDispatcher(chunk: Chunk) : CoroutineContext {
     return this.regionDispatcher(chunk.x, chunk.z, chunk.world)
 }
-fun Plugin.toKotlinPlugin() = this as? KotlinPlugin ?: throw IllegalCallerException("Plugin ${this.name} is not a KotlinPlugin")
+fun Plugin.toKotlinPlugin() = this as? SuspendingPlugin ?: throw IllegalCallerException("Plugin ${this.name} is not a KotlinPlugin")

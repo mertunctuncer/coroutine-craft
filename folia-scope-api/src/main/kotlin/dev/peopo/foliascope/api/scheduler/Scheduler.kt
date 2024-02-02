@@ -1,4 +1,4 @@
-package dev.peopo.foliascope.api
+package dev.peopo.foliascope.api.scheduler
 
 import dev.peopo.foliascope.api.context.getPlugin
 import dev.peopo.foliascope.api.plugin.*
