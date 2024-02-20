@@ -1,0 +1,49 @@
+[versions]
+# kotlin
+kotlin = "1.9.22"
+kotlinx-coroutines = "1.7.3"
+kotlinx-serialization = "1.6.2"
+
+# test
+junit = "5.10.2"
+
+# plugins
+ktlint = "4.2.0"
+maven-publish = "0.27.0"
+koin = "3.5.3"
+
+# minecraft
+spigot-api = "1.20.4-R0.1-SNAPSHOT"
+folia-api = "1.20.2-R0.1-SNAPSHOT"
+
+
+[libraries]
+# kotling
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+
+# DI
+koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+
+# test
+junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
+junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
+
+# minecraft
+spigot-api = { module = "org.spigotmc:spigot-api", version.ref = "spigot-api" }
+folia-api = { module = "dev.folia:folia-api", version.ref = "folia-api" }
+
+# plugins
+gradle-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+
+
+[bundles]
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinx-serialization" }
+ktlint = { id = "org.jmailen.kotlinter", version.ref = "ktlint" }
+maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }
+
+buildlogic = { id = "dev.peopo.buildlogic", version = "0.1"}
