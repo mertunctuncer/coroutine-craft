@@ -18,8 +18,8 @@ publishing {
             name = "GithubPackages"
             url = uri("https://maven.pkg.github.com/mertunctuncer/coroutine-craft")
             credentials {
-                username = project.properties["mavenUser"].toString()
-                password = project.properties["mavenKey"].toString()
+                username = property("mavenUser").toString()
+                password = property("mavenKey").toString()
             }
         }
     }
