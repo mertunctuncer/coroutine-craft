@@ -14,10 +14,10 @@ dependencies {
 
 publishing {
     publications {
-        create<MavenPublication>("coroutinecraftFolia") {
-            groupId = "${project.group}"
-            artifactId = "coroutinecraft-folia"
-            version = "${project.version}"
+        create<MavenPublication>("folia") {
+            groupId = project.group.toString()
+            artifactId = project.name
+            version = project.version.toString()
 
             from(components["java"])
         }
