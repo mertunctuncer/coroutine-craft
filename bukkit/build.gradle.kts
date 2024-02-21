@@ -14,10 +14,10 @@ dependencies {
 
 publishing {
     publications {
-        create<MavenPublication>("coroutinecraftBukkit") {
-            groupId = "${project.group}"
-            artifactId = "coroutinecraft-bukkit"
-            version = "${project.version}"
+        create<MavenPublication>("bukkit") {
+            groupId = project.group.toString()
+            artifactId = project.name
+            version = project.version.toString()
 
             from(components["java"])
         }
