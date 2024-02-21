@@ -1,6 +1,7 @@
 package dev.peopo.coroutinecraft.folia
 
 import dev.peopo.coroutinecraft.shared.dispatcherProvider
+import dev.peopo.coroutinecraft.shared.util.PluginContext
 import kotlinx.coroutines.Dispatchers
 import org.bukkit.Chunk
 import org.bukkit.Location
@@ -40,5 +41,30 @@ public fun Dispatchers.region(plugin: Plugin, chunk: Chunk): CoroutineContext = 
 public fun Dispatchers.region(plugin: Plugin, location: Location): CoroutineContext = plugin.regionDispatcher(location)
 public fun Dispatchers.region(plugin: Plugin, block: Block): CoroutineContext = plugin.regionDispatcher(block)
 
+context(PluginContext<*>)
+public val globalDispatcher: CoroutineContext
+    get() = plugin.globalDispatcher
 
-// TODO ADD CONTEXT RECEIVERS
+context(PluginContext<*>)
+public val asyncDispatcher: CoroutineContext
+    get() = plugin.asyncDispatcher
+
+context(PluginContext<*>)
+public fun entityDispatcher(entity: Entity): CoroutineContext {
+    return plugin.entityDispatcher(entity)
+}
+
+context(PluginContext<*>)
+public fun regionDispatcher(chunk: Chunk): CoroutineContext {
+    return plugin.regionDispatcher(chunk)
+}
+
+context(PluginContext<*>)
+public fun regionDispatcher(location: Location): CoroutineContext {
+    return plugin.regionDispatcher(location)
+}
+
+context(PluginContext<*>)
+public fun regionDispatcher(block: Block): CoroutineContext {
+    return plugin.regionDispatcher(block)
+}
