@@ -13,10 +13,20 @@ dependencies {
 }
 
 publishing {
+    repositories {
+        maven {
+            name = "GithubPackages"
+            url = uri("https://maven.pkg.github.com/mertunctuncer/coroutine-craft")
+            credentials {
+                username = project.properties["mavenUser"].toString()
+                password = project.properties["mavenKey"].toString()
+            }
+        }
+    }
     publications {
         create<MavenPublication>("bukkit") {
-            groupId = project.group.toString()
-            artifactId = project.name
+            groupId = rootProject.group.toString()
+            artifactId = "coroutinecraft-bukkit"
             version = project.version.toString()
 
             from(components["java"])
