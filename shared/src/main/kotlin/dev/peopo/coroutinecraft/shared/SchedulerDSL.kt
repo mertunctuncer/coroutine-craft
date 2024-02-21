@@ -30,7 +30,7 @@ public fun launchTaskAsync(task: CoroutineScope.() -> Unit): Job {
 }
 
 context(PluginContext<*>)
-public fun CoroutineScope.launchTask(task: CoroutineScope.() -> Unit) : Job {
+public fun CoroutineScope.launchTask(task: CoroutineScope.() -> Unit): Job {
     val dispatcher = DispatcherProvider.getProvider(plugin).getDispatcher()
 
     return this.launch(dispatcher) {
@@ -39,7 +39,7 @@ public fun CoroutineScope.launchTask(task: CoroutineScope.() -> Unit) : Job {
 }
 
 context(PluginContext<*>)
-public fun <T> T.launchTask(task: CoroutineScope.(T) -> Unit) : Job {
+public fun <T> T.launchTask(task: CoroutineScope.(T) -> Unit): Job {
     val scope = ScopeHolder.getScopeHolder(plugin).getScope(this)
     val dispatcher = DispatcherProvider.getProvider(plugin).getDispatcher(this)
 
@@ -88,7 +88,7 @@ public fun <T> T.launchTaskLater(delay: Ticks, task: CoroutineScope.(T) -> Unit)
 }
 
 context(PluginContext<*>)
-public fun launchTaskTimer(delay: Ticks, interval: Ticks, task: CoroutineScope.() -> Unit) : Job {
+public fun launchTaskTimer(delay: Ticks, interval: Ticks, task: CoroutineScope.() -> Unit): Job {
     val scope = ScopeHolder.getScopeHolder(plugin).getScope(plugin)
     val dispatcher = DispatcherProvider.getProvider(plugin).getDispatcher()
 
@@ -98,7 +98,7 @@ public fun launchTaskTimer(delay: Ticks, interval: Ticks, task: CoroutineScope.(
 }
 
 context(PluginContext<*>)
-public fun launchTaskTimerAsync(delay: Ticks, interval: Ticks, task: CoroutineScope.() -> Unit) : Job {
+public fun launchTaskTimerAsync(delay: Ticks, interval: Ticks, task: CoroutineScope.() -> Unit): Job {
     val scope = ScopeHolder.getScopeHolder(plugin).getScope(plugin)
     val dispatcher = DispatcherProvider.getProvider(plugin).getAsynchronousDispatcher()
 
@@ -108,7 +108,7 @@ public fun launchTaskTimerAsync(delay: Ticks, interval: Ticks, task: CoroutineSc
 }
 
 context(PluginContext<*>)
-public fun CoroutineScope.launchTaskTimer(delay: Ticks, interval: Ticks, task: CoroutineScope.() -> Unit) : Job {
+public fun CoroutineScope.launchTaskTimer(delay: Ticks, interval: Ticks, task: CoroutineScope.() -> Unit): Job {
     val dispatcher = plugin.dispatcherProvider.getDispatcher()
 
     return this.launch(dispatcher) {
@@ -117,7 +117,7 @@ public fun CoroutineScope.launchTaskTimer(delay: Ticks, interval: Ticks, task: C
 }
 
 context(PluginContext<*>)
-public fun <T> T.launchTaskTimer(delay: Ticks, interval: Ticks, task: CoroutineScope.(T) -> Unit) : Job {
+public fun <T> T.launchTaskTimer(delay: Ticks, interval: Ticks, task: CoroutineScope.(T) -> Unit): Job {
     val scope = ScopeHolder.getScopeHolder(plugin).getScope(this)
     val dispatcher = plugin.dispatcherProvider.getDispatcher(this)
 
@@ -131,17 +131,27 @@ public suspend fun delay(delay: Ticks) {
 }
 
 // Internal stuff, ignore
-internal suspend fun timer(delay: Long, interval: Long, coroutineScope: CoroutineScope, task: CoroutineScope.() -> Unit) {
+internal suspend fun timer(
+    delay: Long,
+    interval: Long,
+    coroutineScope: CoroutineScope,
+    task: CoroutineScope.() -> Unit
+) {
     delay(delay)
-    while(coroutineContext.isActive) {
+    while (coroutineContext.isActive) {
         coroutineScope.task()
         delay(interval)
     }
 }
 
-internal suspend fun <T> T.timer(delay: Long, interval: Long, coroutineScope: CoroutineScope, task: CoroutineScope.(T) -> Unit) {
+internal suspend fun <T> T.timer(
+    delay: Long,
+    interval: Long,
+    coroutineScope: CoroutineScope,
+    task: CoroutineScope.(T) -> Unit
+) {
     delay(delay)
-    while(coroutineContext.isActive) {
+    while (coroutineContext.isActive) {
         coroutineScope.task(this)
         delay(interval)
     }

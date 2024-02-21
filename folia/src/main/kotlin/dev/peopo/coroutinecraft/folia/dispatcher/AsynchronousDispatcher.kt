@@ -8,14 +8,14 @@ import kotlin.coroutines.CoroutineContext
 
 internal class AsynchronousDispatcher(
     private val plugin: Plugin
-): CoroutineDispatcher() {
+) : CoroutineDispatcher() {
 
     override fun isDispatchNeeded(context: CoroutineContext): Boolean {
         return context.isActive
     }
 
     override fun dispatch(context: CoroutineContext, block: Runnable) {
-        if(!context.isActive) return
+        if (!context.isActive) return
 
         val server: Server = plugin.server
 

@@ -1,7 +1,10 @@
 package dev.peopo.coroutinecraft.bukkit
 
 import dev.peopo.coroutinecraft.shared.lifecycle.ScopeHolder
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.HandlerList
@@ -9,8 +12,6 @@ import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerQuitEvent
 import org.bukkit.plugin.Plugin
 import java.util.concurrent.ConcurrentHashMap
-
-
 
 
 internal class BukkitScopeHolder(
@@ -42,7 +43,7 @@ internal class BukkitScopeHolder(
         ConcurrentHashMap<Player, CoroutineScope>()
     }
 
-    override fun <T> getScope(context: T): CoroutineScope = when(context) {
+    override fun <T> getScope(context: T): CoroutineScope = when (context) {
         is Player -> getPlayerScope(context)
         else -> supervisorScope
     }

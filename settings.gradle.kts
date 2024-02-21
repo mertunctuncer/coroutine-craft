@@ -26,16 +26,19 @@ rootProject.name = "coroutine-craft"
 
 rootDir.listFiles()?.filter { it.isDirectory && it.name != "build-logic" }?.forEach { rootProjectFile ->
 
-    if(File(rootProjectFile, "build.gradle.kts").exists() && rootProjectFile.name != "build-logic") include(rootProjectFile.name)
+    if (File(rootProjectFile, "build.gradle.kts").exists() && rootProjectFile.name != "build-logic") include(
+        rootProjectFile.name
+    )
 
-    rootProjectFile.listFiles()?.filter { it.isDirectory && (File(it, "build.gradle.kts").exists()) }?.forEach { projectFile ->
+    rootProjectFile.listFiles()?.filter { it.isDirectory && (File(it, "build.gradle.kts").exists()) }
+        ?.forEach { projectFile ->
 
-        "${rootProjectFile.name}-${projectFile.name}".also {
-            include(it)
-            findProject(":$it")?.apply {
-                name = it
-                projectDir = projectFile
+            "${rootProjectFile.name}-${projectFile.name}".also {
+                include(it)
+                findProject(":$it")?.apply {
+                    name = it
+                    projectDir = projectFile
+                }
             }
         }
-    }
 }

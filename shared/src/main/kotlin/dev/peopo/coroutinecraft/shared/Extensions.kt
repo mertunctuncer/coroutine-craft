@@ -1,8 +1,8 @@
 package dev.peopo.coroutinecraft.shared
 
 import dev.peopo.coroutinecraft.shared.lifecycle.DispatcherProvider
-import dev.peopo.coroutinecraft.shared.util.PluginContext
 import dev.peopo.coroutinecraft.shared.lifecycle.ScopeHolder
+import dev.peopo.coroutinecraft.shared.util.PluginContext
 import kotlinx.coroutines.CoroutineScope
 import org.bukkit.entity.Player
 import org.bukkit.plugin.Plugin

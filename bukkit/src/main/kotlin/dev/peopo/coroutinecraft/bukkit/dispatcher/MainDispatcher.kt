@@ -9,13 +9,14 @@ import kotlin.coroutines.CoroutineContext
 
 internal class MainDispatcher(
     private val plugin: Plugin
-): CoroutineDispatcher() {
+) : CoroutineDispatcher() {
 
     override fun isDispatchNeeded(context: CoroutineContext): Boolean {
         return !Bukkit.isPrimaryThread() || context.isActive
     }
+
     override fun dispatch(context: CoroutineContext, block: Runnable) {
-        if(Bukkit.isPrimaryThread() || !context.isActive) return
+        if (Bukkit.isPrimaryThread() || !context.isActive) return
 
         plugin.server.scheduler.runTask(plugin, block)
     }

@@ -9,13 +9,14 @@ import kotlin.coroutines.CoroutineContext
 
 internal class AsynchronousDispatcher(
     private val plugin: Plugin
-): CoroutineDispatcher() {
+) : CoroutineDispatcher() {
 
     override fun isDispatchNeeded(context: CoroutineContext): Boolean {
         return Bukkit.isPrimaryThread() && context.isActive
     }
+
     override fun dispatch(context: CoroutineContext, block: Runnable) {
-        if(!Bukkit.isPrimaryThread() || !context.isActive) return
+        if (!Bukkit.isPrimaryThread() || !context.isActive) return
 
         plugin.server.scheduler.runTaskAsynchronously(plugin, block)
     }

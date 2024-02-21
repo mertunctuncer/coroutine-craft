@@ -42,7 +42,7 @@ internal class FoliaScopeHolder(
         ConcurrentHashMap<Player, CoroutineScope>()
     }
 
-    override fun <T> getScope(context: T): CoroutineScope = when(context) {
+    override fun <T> getScope(context: T): CoroutineScope = when (context) {
         is Player -> getPlayerScope(context)
         else -> supervisorScope
     }

@@ -46,4 +46,4 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 ktlint = { id = "org.jmailen.kotlinter", version.ref = "ktlint" }
 maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }
 
-buildlogic = { id = "dev.peopo.buildlogic", version = "0.1"}
+buildlogic = { id = "dev.peopo.buildlogic", version = "0.1" }

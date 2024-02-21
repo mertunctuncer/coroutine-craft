@@ -14,10 +14,13 @@ public interface ScopeHolder : AutoCloseable {
             ConcurrentHashMap<Plugin, ScopeHolder>()
         }
 
-        public fun getScopeHolder(plugin: Plugin): ScopeHolder = scopeHolders[plugin] ?: throw LifecycleException("Plugin does not own a scope holder.")
+        public fun getScopeHolder(plugin: Plugin): ScopeHolder =
+            scopeHolders[plugin] ?: throw LifecycleException("Plugin does not own a scope holder.")
+
         public fun registerScopeHolder(plugin: Plugin, scopeHolder: ScopeHolder) {
             scopeHolders[plugin] = scopeHolder
         }
+
         public fun closeScopeHolder(plugin: Plugin) {
             val holder = scopeHolders.remove(plugin)
             holder?.close()

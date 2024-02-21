@@ -20,7 +20,7 @@ internal class FoliaDispatcherProvider(
     private val asynchronousDispatcher = AsynchronousDispatcher(plugin)
     override fun getDispatcher(): CoroutineContext = globalDispatcher
     override fun <T> getDispatcher(context: T): CoroutineContext {
-        return when(context) {
+        return when (context) {
             is Chunk -> RegionDispatcher(plugin, context.world, context.x, context.z)
             is Block -> RegionDispatcher(plugin, context.world, context.chunk.x, context.chunk.z)
             is Location -> RegionDispatcher(plugin, context.world, context.chunk.x, context.chunk.z)
