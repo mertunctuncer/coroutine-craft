@@ -1,5 +1,4 @@
 pluginManagement {
-    includeBuild("build-logic")
     repositories {
         mavenCentral()
         gradlePluginPortal()
@@ -16,6 +15,7 @@ dependencyResolutionManagement {
 
     repositories {
         mavenCentral()
+        maven("https://jitpack.io")
         maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
         maven("https://repo.papermc.io/repository/maven-public/")
     }
@@ -24,9 +24,9 @@ dependencyResolutionManagement {
 rootProject.name = "coroutine-craft"
 
 
-rootDir.listFiles()?.filter { it.isDirectory && it.name != "build-logic" }?.forEach { rootProjectFile ->
+rootDir.listFiles()?.filter { it.isDirectory  }?.forEach { rootProjectFile ->
 
-    if (File(rootProjectFile, "build.gradle.kts").exists() && rootProjectFile.name != "build-logic") include(
+    if (File(rootProjectFile, "build.gradle.kts").exists()) include(
         rootProjectFile.name
     )
 
